@@ -4,7 +4,6 @@ import com.balu.jwtAuthentication.model.Users;
 import com.balu.jwtAuthentication.repository.UserRepo;
 import com.balu.jwtAuthentication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,10 +23,11 @@ public class UserController {
         return userService.register(user);
     }
 
-//    @PostMapping("/login")
-//    public String login(@RequestBody Users user){
-//        return userService.verify(user);
-//    }
+    @PostMapping("/login")
+    public String login(@RequestBody Users user){
+      return userService.verify(user);
+    }
+
 
     @GetMapping("/get")
     public List<Users> getUsers(){

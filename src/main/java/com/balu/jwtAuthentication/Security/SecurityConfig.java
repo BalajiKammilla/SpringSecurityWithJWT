@@ -31,6 +31,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(customizer -> customizer.disable()).
                 authorizeHttpRequests(request -> request
+                        .requestMatchers("/api/register", "/api/login")
+                        .permitAll()
                         .anyRequest().authenticated())
 //                .formLogin(Customizer.withDefaults())  ----for form & Basic is for Postman
                 .httpBasic(Customizer.withDefaults())
@@ -62,12 +64,9 @@ public class SecurityConfig {
         return provider;
     }
 
-
-/*
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
     }
- */
 
 }
